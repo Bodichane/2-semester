@@ -1,9 +1,6 @@
 #include "Form.h"
 
-Form::~Form()
-{
-
-}
+Form::~Form() {}
 
 void Form::Draw() const
 {
