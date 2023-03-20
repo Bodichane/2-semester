@@ -3,8 +3,6 @@
 #include "Form.h"
 #include "Point.h"
 
-using namespace std;
-
 class Circle : public Form, Point
 {
 	public:
