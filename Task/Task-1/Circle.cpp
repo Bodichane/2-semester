@@ -1,9 +1,6 @@
 #include "Circle.h"
 
-Circle::Circle() : radius(0) 
-{
-
-}
+Circle::Circle() : radius(0) {}
 
 Circle::Circle(unsigned int radius, const Point& center) : radius(radius), center(center) {}
 
