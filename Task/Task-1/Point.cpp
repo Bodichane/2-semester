@@ -1,16 +1,11 @@
 #include "Point.h"
 
-Point::Point() : x(0), y(0)
+Point::Point() : x(0), y(0) {}
+
+Point::Point(unsigned int, unsigned int y) : x(x), y(y) {}
+
+std::ostream& operator<<(std::ostream& os, const Point& p) 
 {
-
-}
-
-Point::Point(unsigned int, unsigned int y) : x(x), y(y)
-{
-
-}
-
-std::ostream& operator<<(std::ostream& os, const Point& p) {
     os << "(" << p.x << "," << p.y << ")";
     return os;
 }
