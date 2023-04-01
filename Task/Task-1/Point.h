@@ -5,8 +5,7 @@
 class Point
 {
 	public:
-		Point();
-		Point(unsigned int x, unsigned int y);
+		Point(unsigned int x = 0, unsigned int y = 0);
 		
 	private:
 		unsigned int x;
