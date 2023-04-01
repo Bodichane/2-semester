@@ -1,8 +1,17 @@
 #include "Point.h"
 
-Point::Point() : x(0), y(0) {}
-
-Point::Point(unsigned int, unsigned int y) : x(x), y(y) {}
+Point::Point(unsigned int x, unsigned int y) : x(x), y(y)
+{
+    if (x > 0 && x < 1290 && y > 0 && y < 1080)
+    {
+        x = x;
+        y = y;
+    }
+    else
+    {
+        throw std::invalid_argument("Invalid circle point.");
+    }
+}
 
 std::ostream& operator<<(std::ostream& os, const Point& p) 
 {
