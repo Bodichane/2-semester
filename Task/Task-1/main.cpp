@@ -1,14 +1,13 @@
-#ifndef HEADER_FORM
-#define HEADER_FORM
 #include <iostream>
-#include <sstream>
+#include "Form.h"
+#include "Circle.h"
+#include "Point.h"
 
-class Form
+int main() 
 {
-    public:
-        virtual ~Form() = 0;
-        virtual std::string ToString() const = 0;
-};
+    Point center(2, 3);
+    Circle circle(5, center);
+    std::cout << circle.ToString() << std::endl;
 
-#endif
-
+    return 0;
+}
