@@ -6,11 +6,8 @@
 class Form
 {
     public:
-        virtual ~Form();
+        virtual ~Form() = 0;
         virtual std::string ToString() const = 0;
-        virtual void FromString(const std::string& str) = 0;
-        virtual void Draw() const;
-        virtual void Read(std::istream& is);
 };
 
 #endif
