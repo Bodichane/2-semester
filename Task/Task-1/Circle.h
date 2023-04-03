@@ -6,8 +6,21 @@
 class Circle : public Form
 {
 	public:
+		/**
+     		* Default constructor. Creates a circle with radius zero and center at (0, 0).
+     		*/
 		Circle();
+		/**
+	     	* Constructor. Creates a circle with the given radius and center.
+	     	* @param radius The radius of the circle.
+	     	* @param center The center of the circle.
+	     	* @throws std::invalid_argument If the given radius is not greater than zero.
+	     	*/
 		Circle(unsigned int radius, const Point& center);
+		/**
+	     	* Returns a string representation of the circle.
+	     	* @return The string representation of the circle.
+	     	*/
 		std::string ToString() const override;
 
 	unsigned int radius;
