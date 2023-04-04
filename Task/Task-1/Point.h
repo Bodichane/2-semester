@@ -9,6 +9,7 @@ class Point
 	     	* Point constructor with default x and y values of 0.
 	     	* @param x The x coordinate of the point.
 	     	* @param y The y coordinate of the point.
+		* @throws std::invalid_argument when x and y is negative.
 	     	*/
 		Point(int x = 0, int y = 0);
 		
