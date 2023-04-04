@@ -2,13 +2,9 @@
 
 Circle::Circle() : radius(0) {}
 
-Circle::Circle(unsigned int radius, const Point& center) : radius(radius), center(center) 
+Circle::Circle(int radius, const Point& center) : radius(radius), center(center) 
 {
-    if (radius > 0)
-    {
-        radius = radius;
-    }
-    else
+    if (radius < 0)
     {
         throw std::invalid_argument("Invalid circle radius.");
     }
