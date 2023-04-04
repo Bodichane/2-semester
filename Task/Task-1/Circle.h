@@ -14,7 +14,7 @@ class Circle : public Form
 	     	* Constructor. Creates a circle with the given radius and center.
 	     	* @param radius The radius of the circle.
 	     	* @param center The center of the circle.
-		* @throws std::invalid_argument when radius is negatiive.
+		* @throws std::invalid_argument when radius is negative.
 	     	*/
 		Circle(int radius, const Point& center);
 		/**
