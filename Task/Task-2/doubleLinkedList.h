@@ -92,7 +92,7 @@ public:
    * @param index The index of the node to remove.
    * @throws std::out_of_range If the index is out of bounds.
    */
-  void remove(size_t index);
+  void remove(size_t index); 
   /**
    * @brief Prints the string representation of the linked list to the given output stream.
    * @param os The output stream to print the string representation to.
