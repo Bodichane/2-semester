@@ -78,8 +78,7 @@ public:
   /**
   * @brief Returns a const reference to the data stored in the node at the given index.
   * @param index The index of the node to retrieve the data from.
-  * @return const T& A const reference to the data stored in the node at the
-  * given index.
+  * @return const T& A const reference to the data stored in the node at the given index.
   * @throws std::out_of_range If the index is out of bounds.
   */
   const T &operator[](size_t index) const;
