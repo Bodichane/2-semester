@@ -34,12 +34,6 @@ public:
   */
   DoubleLinkedList(const DoubleLinkedList &other);
   /**
-  * @brief Assigns the elements of another linked list to this linked list.
-  * @param other The linked list to copy the elements from.
-  * @return DoubleLinkedList& A reference to this linked list after the copy.
-  */
-  DoubleLinkedList &operator=(const DoubleLinkedList &other);
-  /**
   * @brief Destroys the linked list and deallocates the memory used by the nodes.
   */
   ~DoubleLinkedList();
@@ -93,13 +87,8 @@ public:
    * @throws std::out_of_range If the index is out of bounds.
    */
   void remove(size_t index); 
-  /**
-   * @brief Prints the string representation of the linked list to the given output stream.
-   * @param os The output stream to print the string representation to.
-   * @param lst The linked list to print the string representation of.
-   * @return std::ostream& The output stream after printing the string representation.
-   */
-  friend std::ostream &operator<<(std::ostream &os, const DoubleLinkedList &lst);
+ 
+  auto operator<=>(const const DoubleLinkedList<T>) const = default;
 };
 
 #endif
