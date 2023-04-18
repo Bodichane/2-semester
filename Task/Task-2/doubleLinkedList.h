@@ -70,13 +70,6 @@ public:
   */
   T &operator[](size_t index);
   /**
-  * @brief Returns a const reference to the data stored in the node at the given index.
-  * @param index The index of the node to retrieve the data from.
-  * @return const T& A const reference to the data stored in the node at the given index.
-  * @throws std::out_of_range If the index is out of bounds.
-  */
-  const T &operator[](size_t index) const;
-  /**
   * @brief Returns a string representation of the linked list, with the elements separated by commas and enclosed in square brackets.
   * @return std::string The string representation of the linked list.
   */
