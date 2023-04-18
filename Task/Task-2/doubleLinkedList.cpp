@@ -89,18 +89,6 @@ template <typename T> T &DoubleLinkedList<T>::operator[](size_t index) {
   return cur->data;
 }
 
-template <typename T>
-const T &DoubleLinkedList<T>::operator[](size_t index) const {
-  if (index < 0 || index >= size) {
-    throw std::out_of_range("Index out of range");
-  }
-  Node *cur = head;
-  for (size_t i = 0; i < index; i++) {
-    cur = cur->next;
-  }
-  return cur->data;
-}
-
 template <typename T> std::string DoubleLinkedList<T>::to_string() const {
   std::stringstream ss;
   if (empty()) {
