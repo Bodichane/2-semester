@@ -22,21 +22,6 @@ DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList &other)
   }
 }
 
-template <typename T>
-DoubleLinkedList<T> &
-DoubleLinkedList<T>::operator=(const DoubleLinkedList &other) {
-  if (this == &other) {
-    return *this;
-  }
-  clear();
-  Node *cur = other.head;
-  while (cur != nullptr) {
-    push_back(cur->data);
-    cur = cur->next;
-  }
-  return *this;
-}
-
 template <typename T> DoubleLinkedList<T>::~DoubleLinkedList() { clear(); }
 
 template <typename T> void DoubleLinkedList<T>::clear() {
@@ -154,10 +139,4 @@ template <typename T> void DoubleLinkedList<T>::remove(size_t index) {
     delete cur;
     size--;
   }
-}
-
-template <typename T>
-std::ostream &operator<<(std::ostream &os, const DoubleLinkedList<T> &lst) {
-  os << lst.to_string();
-  return os;
 }
