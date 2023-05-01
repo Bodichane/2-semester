@@ -80,8 +80,15 @@ public:
    * @throws std::out_of_range If the index is out of bounds.
    */
   void remove(size_t index); 
+  /**
+   * @brief Prints the string representation of the linked list to the given output stream.
+   * @param os The output stream to print the string representation to.
+   * @param lst The linked list to print the string representation of.
+   * @return std::ostream& The output stream after printing the string representation.
+   */
+   friend std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst);
  
-  auto operator<=>(const DoubleLinkedList<T>) const = default;
+   auto operator<=>(const DoubleLinkedList<T>) const = default;
 };
 
 #endif
