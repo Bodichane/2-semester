@@ -81,7 +81,7 @@ public:
    */
   void remove(size_t index); 
  
-  auto operator<=>(const const DoubleLinkedList<T>) const = default;
+  auto operator<=>(const DoubleLinkedList<T>) const = default;
 };
 
 #endif
