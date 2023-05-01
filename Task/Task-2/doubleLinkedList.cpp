@@ -128,3 +128,9 @@ template <typename T> void DoubleLinkedList<T>::remove(size_t index) {
     size--;
   }
 }
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst) {
+    os << lst.to_string();
+    return os;
+}
