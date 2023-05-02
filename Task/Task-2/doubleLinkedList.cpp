@@ -22,6 +22,13 @@ DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList &other)
   }
 }
 
+template <typename T>
+DoubleLinkedList<T>::DoubleLinkedList(DoubleLinkedList &&other) noexcept : head(other.head), tail(other.tail), size(other.size) {
+    other.head = nullptr;
+    other.tail = nullptr;
+    other.size = 0;
+}
+
 template <typename T> DoubleLinkedList<T>::~DoubleLinkedList() { clear(); }
 
 template <typename T> void DoubleLinkedList<T>::clear() {
@@ -127,6 +134,31 @@ template <typename T> void DoubleLinkedList<T>::remove(size_t index) {
     delete cur;
     size--;
   }
+}
+
+template <typename T>
+DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(const DoubleLinkedList &other) {
+    if (this != &other) {
+        clear();
+        for (Node *curr = other.head; curr != nullptr; curr = curr->next) {
+            push_back(curr->data);
+        }
+    }
+    return *this;
+}
+template <typename T>
+DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(DoubleLinkedList &&other) noexcept {
+    if (this != &other) {
+        clear();
+        head = other.head;
+        tail = other.tail;
+        size = other.size;
+      
+        other.head = nullptr;
+        other.tail = nullptr;
+        other.size = 0;
+    }
+    return *this;
 }
 
 template <typename T>
