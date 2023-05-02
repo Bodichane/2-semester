@@ -34,6 +34,11 @@ public:
   */
   DoubleLinkedList(const DoubleLinkedList &other);
   /**
+  * @brief Move constructor for DoubleLinkedList.
+  * @param other The linked list to move elements from.
+  */
+  DoubleLinkedList(DoubleLinkedList &&other) noexcept;
+  /**
   * @brief Destroys the linked list and deallocates the memory used by the nodes.
   */
   ~DoubleLinkedList();
@@ -81,14 +86,26 @@ public:
    */
   void remove(size_t index); 
   /**
-   * @brief Prints the string representation of the linked list to the given output stream.
-   * @param os The output stream to print the string representation to.
-   * @param lst The linked list to print the string representation of.
-   * @return std::ostream& The output stream after printing the string representation.
-   */
-   friend std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst);
+  * @brief Assignment Operator= for DoubleLinkedList.
+  * @param other The linked list to copy the elements from.
+  * @return DoubleLinkedList& A reference to the assigned linked list.
+  */
+  DoubleLinkedList& operator=(const DoubleLinkedList &other);
+  /**
+  * @brief Move Assignment Operator= for DoubleLinkedList.
+  * @param other The linked list to move elements from.
+  * @return DoubleLinkedList& A reference to the assigned linked list.
+  */
+  DoubleLinkedList& operator=(DoubleLinkedList &&other) noexcept;
+  /**
+  * @brief Prints the string representation of the linked list to the given output stream.
+  * @param os The output stream to print the string representation to.
+  * @param lst The linked list to print the string representation of.
+  * @return std::ostream& The output stream after printing the string representation.
+  */
+  friend std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst);
  
-   auto operator<=>(const DoubleLinkedList<T>) const = default;
+  auto operator<=>(const DoubleLinkedList<T>) const = default;
 };
 
 #endif
