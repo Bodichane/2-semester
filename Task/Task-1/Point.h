@@ -4,6 +4,9 @@
 
 class Point
 {
+	private:
+		int x;
+		int y;
 	public:
 	 	/**
 	     	* Point constructor with default x and y values of 0.
@@ -12,12 +15,15 @@ class Point
 		* @throws std::invalid_argument when x and y is negative.
 	     	*/
 		Point(int x = 0, int y = 0);
-		
-	private:
-		int x;
-		int y;
+		/**
+		* Overloading of the output stream operator << to print a point.
+		* @param os The output stream.
+		* @param p The point to be printed.
+		* @return The output stream.
+		*/
+		friend std::ostream& operator<<(std::ostream& os, const Point& p);
 	
-	auto operator<=>(const Point&) const = default;
+		auto operator<=>(const Point&) const = default;
 };
 
 #endif
