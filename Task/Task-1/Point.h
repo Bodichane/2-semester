@@ -1,6 +1,10 @@
 #ifndef HEADER_POINT
 #define HEADER_POINT
+
 #include <iostream>
+#include <cassert>
+#include <compare>
+#include <set>
 
 class Point
 {
