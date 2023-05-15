@@ -105,7 +105,7 @@ public:
   */
   friend std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst);
  
-  auto operator<=>(const DoubleLinkedList<T>) const = default;
+  auto operator<=>(const DoubleLinkedList<T>&) const = default;
 };
 
 #endif
