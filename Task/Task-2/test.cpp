@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include "doubleLinkedList.h"
 
 int main() {
     DoubleLinkedList<int> lst = {1, 2, 3, 4};
