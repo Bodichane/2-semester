@@ -137,31 +137,6 @@ template <typename T> void DoubleLinkedList<T>::remove(size_t index) {
 }
 
 template <typename T>
-DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(const DoubleLinkedList &other) {
-    if (this != &other) {
-        clear();
-        for (Node *curr = other.head; curr != nullptr; curr = curr->next) {
-            push_back(curr->data);
-        }
-    }
-    return *this;
-}
-template <typename T>
-DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(DoubleLinkedList &&other) noexcept {
-    if (this != &other) {
-        clear();
-        head = other.head;
-        tail = other.tail;
-        size = other.size;
-      
-        other.head = nullptr;
-        other.tail = nullptr;
-        other.size = 0;
-    }
-    return *this;
-}
-
-template <typename T>
 std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst) {
     os << lst.to_string();
     return os;
