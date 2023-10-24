@@ -1,10 +1,8 @@
-#ifndef DOUBLELINKEDLIST_H
-#define DOUBLELINKEDLIST_H
+#pragma once
 
 #include <initializer_list>
 #include <sstream>
 #include <stdexcept>
-#include <cassert>
 #include <compare>
 #include <set>
 #include <memory>
@@ -13,8 +11,8 @@ template <typename T> class DoubleLinkedList {
   private:
     struct Node {
       T data;
-      std::unique_ptr<Node> next;
-      Node *prev;
+      std::shared_ptr<Node> next;
+      std::weak_ptr<Node> prev;
       Node(const T &data) : data(data), next(nullptr), prev(nullptr) {}
     };
   
@@ -109,7 +107,4 @@ template <typename T> class DoubleLinkedList {
     */
     DoubleLinkedList& operator=(DoubleLinkedList &&other) noexcept;
    
-    auto operator<=>(const DoubleLinkedList<T> const) = default;
 };
-
-#endif
