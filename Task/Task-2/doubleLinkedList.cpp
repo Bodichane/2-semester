@@ -23,17 +23,17 @@ DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList &other)
 }
 
 template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(DoubleLinkedList &&other) noexcept : head(other.head), tail(other.tail), size(other.size) {
-    other.head = nullptr;
-    other.tail = nullptr;
-    other.size = 0;
+DoubleLinkedList<T>::DoubleLinkedList(DoubleLinkedList &&other) noexcept : head(nullptr), tail(nullptr), size(0) {
+    std::swap(this->head, other.head);
+    std::swap(this->tail, other.tail);
+    std::swap(this->size, other.size);
 }
 
 template <typename T> DoubleLinkedList<T>::~DoubleLinkedList() { clear(); }
 
 template <typename T> void DoubleLinkedList<T>::clear() {
-  head.reset();
-  tail.reset();
+   head.reset(nullptr);
+  tail.reset(nullptr);
   size = 0;
 }
 
@@ -144,11 +144,10 @@ DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(const DoubleLinkedList &othe
 template <typename T>
 DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(DoubleLinkedList &&other) noexcept {
     if (this != &other) {
-        clear();
-        head = other.head;
-        tail = other.tail;
-        size = other.size;
-      
+        std::swap(this->head, other.head); 
+        std::swap(this->tail, other.tail); 
+        std::swap(this->size, other.size);
+
         other.head = nullptr;
         other.tail = nullptr;
         other.size = 0;
@@ -162,6 +161,5 @@ std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst) {
     return os;
 }
 
-template <typename T>
-auto operator<=>(const DoubleLinkedList<T>) const = default;
+
 
