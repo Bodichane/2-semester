@@ -3,8 +3,6 @@
 #include <initializer_list>
 #include <sstream>
 #include <stdexcept>
-#include <compare>
-#include <set>
 #include <memory>
 
 template <typename T> class DoubleLinkedList {
