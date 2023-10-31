@@ -1,13 +1,14 @@
 #include <iostream>
+#include <memory>
 #include "Form.h"
 #include "Circle.h"
 #include "Point.h"
 
 int main() 
 {
-    Point center(2, 3);
-    Circle circle(5, center);
-    std::cout << circle.ToString() << std::endl;
+    std::unique_ptr<Point> center = std::make_unique<Point>(2, 3);
+    std::unique_ptr<Circle> circle = std::make_unique<Circle>(5, *center);
+    std::cout << circle->ToString() << std::endl;
 
     return 0;
 }
