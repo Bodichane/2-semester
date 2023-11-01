@@ -1,5 +1,4 @@
-#ifndef HEADER_POINT
-#define HEADER_POINT
+#pragma once
 
 #include <iostream>
 #include <cassert>
@@ -30,5 +29,4 @@ class Point
 		auto operator<=>(const Point&) const = default;
 };
 
-#endif
 

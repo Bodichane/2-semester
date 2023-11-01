@@ -1,5 +1,5 @@
-#ifndef HEADER_CIRCLE
-#define HEADER_CIRCLE
+#pragma once
+
 #include "Form.h"
 #include "Point.h"
 
@@ -27,5 +27,4 @@ class Circle : public Form
 	Point center;
 };
 
-#endif
 

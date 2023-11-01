@@ -1,5 +1,5 @@
-#ifndef HEADER_FORM
-#define HEADER_FORM
+#pragma once
+
 #include <iostream>
 #include <sstream>
 
@@ -17,5 +17,4 @@ class Form
         virtual std::string ToString() const = 0;
 };
 
-#endif
 
