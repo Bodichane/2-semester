@@ -1,24 +1,27 @@
 #pragma once
 
+#include <iostream>
 #include <initializer_list>
 #include <sstream>
 #include <stdexcept>
+#include <compare>
+#include <set>
 #include <memory>
 
 template <typename T> class DoubleLinkedList {
-  private:
+public:
     struct Node {
-      T data;
-      std::shared_ptr<Node> next;
-      std::weak_ptr<Node> prev;
-      Node(const T &data) : data(data), next(nullptr), prev(nullptr) {}
+        T data;
+        std::shared_ptr<Node> next;
+        std::weak_ptr<Node> prev;
+        Node(const T& data) : data(data), next(nullptr), prev(nullptr) {}
     };
-  
-    Node *head;
-    Node *tail;
+
+    Node* start;
+    Node* end;
     size_t size;
-  
-  public:
+
+public:
     /**
     * @brief Constructs a new empty linked list.
     */
@@ -32,12 +35,12 @@ template <typename T> class DoubleLinkedList {
     * @brief Constructs a new linked list with the same elements as another linked list.
     * @param other The linked list to copy the elements from.
     */
-    DoubleLinkedList(const DoubleLinkedList &other);
+    DoubleLinkedList(const DoubleLinkedList& other);
     /**
     * @brief Move constructor for DoubleLinkedList.
     * @param other The linked list to move elements from.
     */
-    DoubleLinkedList(DoubleLinkedList &&other) noexcept;
+    DoubleLinkedList(DoubleLinkedList&& other) noexcept;
     /**
     * @brief Destroys the linked list and deallocates the memory used by the nodes.
     */
@@ -58,22 +61,17 @@ template <typename T> class DoubleLinkedList {
     */
     size_t length() const;
     /**
-    * @brief Adds a new node with the given data to the front of the linked list.
+    * @brief Adds a new node with the given data of the linked list.
     * @param data The data to store in the new node.
     */
-    void push_front(const T &data);
-    /**
-    * @brief Adds a new node with the given data to the back of the linked list.
-    * @param data The data to store in the new node.
-    */
-    void push_back(const T &data);
+    void addNode(const T& data);
     /**
     * @brief Returns a reference to the data stored in the node at the given index.
     * @param index The index of the node to retrieve the data from.
     * @return T& A reference to the data stored in the node at the given index.
     * @throws std::out_of_range If the index is out of bounds.
     */
-    T &operator[](size_t index);
+    T& operator[](size_t index);
     /**
     * @brief Returns a string representation of the linked list, with the elements separated by commas and enclosed in square brackets.
     * @return std::string The string representation of the linked list.
@@ -84,7 +82,7 @@ template <typename T> class DoubleLinkedList {
      * @param index The index of the node to remove.
      * @throws std::out_of_range If the index is out of bounds.
      */
-    void remove(size_t index); 
+    void remove(size_t index);
     /**
     * @brief Prints the string representation of the linked list to the given output stream.
     * @param os The output stream to print the string representation to.
@@ -97,12 +95,12 @@ template <typename T> class DoubleLinkedList {
     * @param other The linked list to copy the elements from.
     * @return DoubleLinkedList& A reference to the assigned linked list.
     */
-    DoubleLinkedList& operator=(const DoubleLinkedList &other);
+    DoubleLinkedList& operator=(const DoubleLinkedList& other);
     /**
     * @brief Move Assignment Operator= for DoubleLinkedList.
     * @param other The linked list to move elements from.
     * @return DoubleLinkedList& A reference to the assigned linked list.
     */
-    DoubleLinkedList& operator=(DoubleLinkedList &&other) noexcept;
-   
+    DoubleLinkedList& operator=(DoubleLinkedList&& other) noexcept;
+
 };
