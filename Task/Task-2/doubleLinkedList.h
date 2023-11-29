@@ -4,12 +4,10 @@
 #include <initializer_list>
 #include <sstream>
 #include <stdexcept>
-#include <compare>
-#include <set>
 #include <memory>
 
 template <typename T> class DoubleLinkedList {
-public:
+private:
     struct Node {
         T data;
         std::shared_ptr<Node> next;
@@ -17,8 +15,8 @@ public:
         Node(const T& data) : data(data), next(nullptr), prev(nullptr) {}
     };
 
-    Node* start;
-    Node* end;
+    Node* head;
+    Node* tail;
     size_t size;
 
 public:
@@ -30,7 +28,7 @@ public:
     * @brief Constructs a new linked list initialized with the elements of the provided initializer list.
     * @param lst The initializer list of elements to initialize the linked list with.
     */
-    DoubleLinkedList(std::initializer_list<T> lst);
+    DoubleLinkedList(std::initializer_list<int> lst);
     /**
     * @brief Constructs a new linked list with the same elements as another linked list.
     * @param other The linked list to copy the elements from.
@@ -61,10 +59,15 @@ public:
     */
     size_t length() const;
     /**
-    * @brief Adds a new node with the given data of the linked list.
+    * @brief Adds a new node with the given data to the front of the linked list.
     * @param data The data to store in the new node.
     */
-    void addNode(const T& data);
+    void push_front(const T& data);
+    /**
+    * @brief Adds a new node with the given data to the back of the linked list.
+    * @param data The data to store in the new node.
+    */
+    void push_back(const T& data);
     /**
     * @brief Returns a reference to the data stored in the node at the given index.
     * @param index The index of the node to retrieve the data from.
