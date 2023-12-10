@@ -5,7 +5,7 @@ DoubleLinkedList<T>::DoubleLinkedList()
     : head(nullptr), tail(nullptr), size(0) {}
 
 template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(std::initializer_list<int> lst)
+DoubleLinkedList<T>::DoubleLinkedList(std::initializer_list<T> lst)
     : DoubleLinkedList() {
     for (auto& elem : lst) {
         push_back(elem);
@@ -72,7 +72,7 @@ template <typename T> void DoubleLinkedList<T>::push_back(const T& data) {
 }
 
 template <typename T> T& DoubleLinkedList<T>::operator[](size_t index) {
-    if (index < 0 || index >= size) {
+    if (index >= size) {
         throw std::out_of_range("Index out of range");
     }
     Node* cur = head;
