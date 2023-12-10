@@ -28,7 +28,7 @@ public:
     * @brief Constructs a new linked list initialized with the elements of the provided initializer list.
     * @param lst The initializer list of elements to initialize the linked list with.
     */
-    DoubleLinkedList(std::initializer_list<int> lst);
+    DoubleLinkedList(std::initializer_list<T> lst);
     /**
     * @brief Constructs a new linked list with the same elements as another linked list.
     * @param other The linked list to copy the elements from.
