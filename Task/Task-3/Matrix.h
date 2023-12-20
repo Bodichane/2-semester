@@ -11,6 +11,8 @@ namespace miit::algebra
 {
     template <typename T> class Matrix {
     private:
+        size_t rows;
+        size_t cols;
         std::vector<std::vector<T>> data;  
 
     public:
@@ -43,7 +45,22 @@ namespace miit::algebra
         * \return String representation of the matrix.
         */
         std::string toString() const;
-       /*
+        /*
+        * \brief Gets the number of rows in the matrix.
+        * \return The number of rows.
+        */
+        size_t getRows() const;
+        /*
+        * \brief Gets the number of columns in the matrix.
+        * \return The number of columns.
+        */
+        size_t getColumns() const;
+        /*
+        * \brief Converts the matrix to a string with elements in a single line.
+        * \return String representation of the matrix.
+        */
+        std::string toFlatString() const;
+        /*
         * \brief Copy assignment operator for Matrix.
         * \param other Another Matrix to copy.
         * \return Reference to the assigned matrix.
