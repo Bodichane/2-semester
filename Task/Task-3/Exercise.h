@@ -16,10 +16,10 @@ namespace miit::algebra {
     public:
         /*
         * \brief Constructor for Exercise.
+        * \param matrix Represents the matrix.
         * \param generator Pointer to a Generator for initializing the matrix.
-        * \param size Size of the matrix (assumes a square matrix).
         */
-        Exercise(Generator* generator, int size);
+        Exercise(Matrix<int> matrix, Generator* genarator);
 
         /**
         * \brief Destructor for Exercise.
