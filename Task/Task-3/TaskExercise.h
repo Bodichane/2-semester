@@ -3,10 +3,16 @@
 #include "Exercise.h"
 
 namespace miit::algebra {
-    class Task1Exercise : public Exercise {
+    class TaskExercise : public Exercise {
     public:
-        Task1Exercise(Generator* generator, int size);
+        /*
+        * \brief Constructor for TaskExercise.
+        * \param matrix Represents the matrix.
+        * \param generator Pointer to a Generator for initializing the matrix.
+        */
+        TaskExercise(Matrix<int> matrix, Generator* generator);
 
         void Task1() override;
+        void Task2() override;
     };
 }
