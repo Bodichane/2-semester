@@ -43,17 +43,6 @@ namespace miit::algebra {
         return cols;
     }
 
-    template<typename T>
-    std::string Matrix<T>::toFlatString() const {
-        std::string result;
-        for (size_t i = 0; i < rows; ++i) {
-            for (size_t j = 0; j < columns; ++j) {
-                result += std::to_string(matrix[i][j]) + " ";
-            }
-        }
-        return result;
-    }
-
     template <typename T>
     Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other) {
         if (this != &other) {
