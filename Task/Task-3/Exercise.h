@@ -19,7 +19,7 @@ namespace miit::algebra {
         * \param matrix Represents the matrix.
         * \param generator Pointer to a Generator for initializing the matrix.
         */
-        Exercise(Matrix<int> matrix, Generator* genarator);
+        Exercise(Matrix<int> matrix, Generator* generator);
 
         /**
         * \brief Destructor for Exercise.
