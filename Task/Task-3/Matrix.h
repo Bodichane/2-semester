@@ -56,11 +56,6 @@ namespace miit::algebra
         */
         size_t getColumns() const;
         /*
-        * \brief Converts the matrix to a string with elements in a single line.
-        * \return String representation of the matrix.
-        */
-        std::string toFlatString() const;
-        /*
         * \brief Copy assignment operator for Matrix.
         * \param other Another Matrix to copy.
         * \return Reference to the assigned matrix.
