@@ -5,7 +5,7 @@
 #include <initializer_list>
 
 /**
-* @brief Class SinglyLinkedList.
+* @brief Class DoubleLinkedList.
 */
 class DoubleLinkedList {
     std::shared_ptr<Node> head;
