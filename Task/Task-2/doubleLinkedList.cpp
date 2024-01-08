@@ -1,149 +1,160 @@
 #include "doubleLinkedList.h"
 
-template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList()
+DoubleLinkedList::DoubleLinkedList()
     : head(nullptr), tail(nullptr), size(0) {}
 
-template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(std::initializer_list<T> lst)
+
+DoubleLinkedList::DoubleLinkedList(std::initializer_list<int> lst)
     : DoubleLinkedList() {
     for (auto& elem : lst) {
         push_back(elem);
     }
 }
 
-template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList& other)
+DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList& other)
     : DoubleLinkedList() {
     auto cur = other.head;
     while (cur != nullptr) {
-        push_back(cur->data);
+        push_back(cur->value);
         cur = cur->next;
     }
 }
 
-template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(DoubleLinkedList&& other) noexcept : head(nullptr), tail(nullptr), size(0) {
+DoubleLinkedList::DoubleLinkedList(DoubleLinkedList&& other) noexcept : head(nullptr), tail(nullptr), size(0) {
     std::swap(this->head, other.head);
     std::swap(this->tail, other.tail);
     std::swap(this->size, other.size);
 }
 
-template <typename T> DoubleLinkedList<T>::~DoubleLinkedList() { clear(); }
+DoubleLinkedList::~DoubleLinkedList() { clear(); }
 
-template <typename T> void DoubleLinkedList<T>::clear() {
+void DoubleLinkedList::clear() {
     while (head) {
-        auto sp = tail.lock();
-        tail = head->next;
-        head.reset(sp.get());
+        head = head->next;
     }
+    tail.reset();
+    size = 0;
 }
 
-template <typename T> bool DoubleLinkedList<T>::empty() const {
+bool DoubleLinkedList::empty() const {
     return size == 0;
 }
 
-template <typename T> size_t DoubleLinkedList<T>::length() const {
+size_t DoubleLinkedList::length() const {
     return size;
 }
 
-template <typename T> void DoubleLinkedList<T>::push_front(const T& data) {
-    auto new_node = std::make_unique<Node>(data);
-    if (head == nullptr) {
+void DoubleLinkedList::push_front(int value) {
+    auto new_node = std::make_shared<Node>(value);
+    if (head == nullptr)
+    {
         tail = new_node;
     }
-    else {
-        head->prev = new_node;
+    else
+    {
+        head->previous = new_node;
     }
+    new_node->next = head;
+    head = new_node;
     ++size;
 }
 
-template <typename T> void DoubleLinkedList<T>::push_back(const T& data) {
-    auto new_node = std::make_unique<Node>(data);
-    if (head == 0) {
-        tail = new_node;
+void DoubleLinkedList::push_back(int value) {
+    auto new_node = std::make_shared<Node>(value);
+    if (head == nullptr)
+    {
+        head = new_node;
     }
-    else {
+    else
+    {
         tail->next = new_node;
     }
-    new_node->prev = tail;
+    new_node->previous = tail;
     tail = new_node;
     ++size;
 }
+ 
+void DoubleLinkedList::pop_front()
+{
+    if (head == nullptr)
+    {
+        return;
+    }
+    auto temp = head;
+    head = head->next;
 
-template <typename T> T& DoubleLinkedList<T>::operator[](size_t index) {
-    if (index >= size) {
-        throw std::out_of_range("Index out of range");
+    --size;
+};
+
+void DoubleLinkedList::pop_back()
+{
+    if (nullptr == this->head)
+    {
+        return;
     }
-    Node* cur = head;
-    for (size_t i = 0; i < index; i++) {
-        cur = cur->next;
+
+    auto temp = this->tail;
+    this->tail = this->tail->previous.lock();
+
+    tail->next = nullptr;
+    --size;
+};
+
+
+int& DoubleLinkedList::operator[](size_t index) {
+    auto curr = head.get();
+    for (size_t i = 0; i < index; ++i) {
+        if (!curr) throw std::out_of_range("Index out of bounds");
+        curr = curr->next.get();
     }
-    return cur->data;
+    if (!curr) throw std::out_of_range("Index out of bounds");
+    return curr->value;
 }
 
-template <typename T> std::string DoubleLinkedList<T>::to_string() const {
-    std::stringstream ss;
-    if (empty()) {
-        ss << "[]";
+void DoubleLinkedList::print() {
+
+    auto temp = head;
+    while (temp != nullptr)
+    {
+        std::cout << temp->value << " ";
+        temp = temp->next;
     }
-    else {
-        ss << "[" << head->data;
-        Node* cur = head->next;
-        while (cur != head) {
-            ss << ", " << cur->data;
-            cur = cur->next;
+}
+ 
+void DoubleLinkedList::remove(size_t index) {
+    if (index == 0)
+    {
+        pop_front();
+    }
+    else if (index == size - 1)
+    {
+        pop_back();
+    }
+    else
+    {
+        auto temp = head;
+        std::size_t i = 0;
+        while (i < index - 1)
+        {
+            temp = temp->next;
         }
-        ss << "]";
+
+        auto to_delete = temp->next;
+        temp->next = to_delete->next;
+        --size;
     }
-    return ss.str();
 }
 
-template <typename T> void DoubleLinkedList<T>::remove(size_t index) {
-    if (index >= size) {
-        throw std::out_of_range("Index is out of bounds");
-    }
-
-    if (index == 0) {
-        head = std::move(head->next);
-        if (head) {
-            head->prev = nullptr;
-        }
-        else {
-            tail = nullptr;
-        }
-    }
-    else {
-        std::unique_ptr<Node>* current = &head;
-        for (size_t i = 0; i < index; ++i) {
-            current = &(*current)->next;
-        }
-
-        std::unique_ptr<Node> nodeToRemove = std::move(*current);
-        *current = std::move(nodeToRemove->next);
-
-        if (*current) {
-            (*current)->prev = nodeToRemove->prev;
-        }
-        else {
-            tail = nodeToRemove->prev;
-        }
-    }
-    size--;
-}
-
-template <typename T>
-DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(const DoubleLinkedList& other) {
-    if (this != &other) {
-        clear();
-        for (Node* curr = other.head; curr != nullptr; curr = curr->next) {
-            push_back(curr->data);
-        }
+DoubleLinkedList& DoubleLinkedList::operator=(const DoubleLinkedList& other) {
+    if (this == &other) return *this;
+    clear();
+    for (auto curr = other.head; curr; curr = curr->next) {
+        push_back(curr->value);
     }
     return *this;
 }
-template <typename T>
-DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(DoubleLinkedList&& other) noexcept {
+
+DoubleLinkedList& DoubleLinkedList::operator=(DoubleLinkedList&& other) noexcept {
     if (this != &other) {
         std::swap(this->head, other.head);
         std::swap(this->tail, other.tail);
@@ -156,11 +167,6 @@ DoubleLinkedList<T>& DoubleLinkedList<T>::operator=(DoubleLinkedList&& other) no
     return *this;
 }
 
-template <typename T>
-std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& lst) {
-    os << lst.to_string();
-    return os;
-}
 
 
 
