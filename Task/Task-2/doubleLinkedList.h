@@ -4,6 +4,9 @@
 #include "Node.h"
 #include <initializer_list>
 
+/**
+* @brief Class SinglyLinkedList.
+*/
 class DoubleLinkedList {
     std::shared_ptr<Node> head;
     std::shared_ptr<Node> tail;
