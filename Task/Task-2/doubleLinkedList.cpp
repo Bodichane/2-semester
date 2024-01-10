@@ -11,21 +11,6 @@ DoubleLinkedList::DoubleLinkedList(std::initializer_list<int> lst)
     }
 }
 
-DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList& other)
-    : DoubleLinkedList() {
-    auto cur = other.head;
-    while (cur != nullptr) {
-        push_back(cur->value);
-        cur = cur->next;
-    }
-}
-
-DoubleLinkedList::DoubleLinkedList(DoubleLinkedList&& other) noexcept : head(nullptr), tail(nullptr), size(0) {
-    std::swap(this->head, other.head);
-    std::swap(this->tail, other.tail);
-    std::swap(this->size, other.size);
-}
-
 DoubleLinkedList::~DoubleLinkedList() { clear(); }
 
 void DoubleLinkedList::clear() {
@@ -112,13 +97,20 @@ int& DoubleLinkedList::operator[](size_t index) {
 }
 
 void DoubleLinkedList::print() {
-
-    auto temp = head;
-    while (temp != nullptr)
-    {
-        std::cout << temp->value << " ";
-        temp = temp->next;
+    std::stringstream ss;
+    if (empty()) {
+        ss << "[]";
     }
+    else {
+        ss << "[" << head->value;
+        auto curr = head->next;
+        while (curr) {
+            ss << ", " << curr->value;
+            curr = curr->next;
+        }
+        ss << "]";
+    }
+    std::cout << ss.str() << std::endl;
 }
  
 void DoubleLinkedList::remove(size_t index) {
@@ -143,28 +135,6 @@ void DoubleLinkedList::remove(size_t index) {
         temp->next = to_delete->next;
         --size;
     }
-}
-
-DoubleLinkedList& DoubleLinkedList::operator=(const DoubleLinkedList& other) {
-    if (this == &other) return *this;
-    clear();
-    for (auto curr = other.head; curr; curr = curr->next) {
-        push_back(curr->value);
-    }
-    return *this;
-}
-
-DoubleLinkedList& DoubleLinkedList::operator=(DoubleLinkedList&& other) noexcept {
-    if (this != &other) {
-        std::swap(this->head, other.head);
-        std::swap(this->tail, other.tail);
-        std::swap(this->size, other.size);
-
-        other.head = nullptr;
-        other.tail = 0;
-        other.size = 0;
-    }
-    return *this;
 }
 
 
