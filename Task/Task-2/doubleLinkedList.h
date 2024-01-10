@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Node.h"
 #include <initializer_list>
+#include <sstream>
 
 /**
 * @brief Class DoubleLinkedList.
@@ -26,12 +27,12 @@ public:
     * @brief Constructs a new linked list with the same elements as another linked list.
     * @param other The linked list to copy the elements from.
     */
-    DoubleLinkedList(const DoubleLinkedList& other);
+    DoubleLinkedList(const DoubleLinkedList& other) = default;
     /**
     * @brief Move constructor for DoubleLinkedList.
     * @param other The linked list to move elements from.
     */
-    DoubleLinkedList(DoubleLinkedList&& other) noexcept;
+    DoubleLinkedList(DoubleLinkedList&& other) noexcept = default;
     /**
     * @brief Destroys the linked list and deallocates the memory used by the nodes.
     */
@@ -92,12 +93,12 @@ public:
     * @param other The linked list to copy the elements from.
     * @return DoubleLinkedList& A reference to the assigned linked list.
     */
-    DoubleLinkedList& operator=(const DoubleLinkedList& other);
+    DoubleLinkedList& operator=(const DoubleLinkedList& other) = default;
     /**
     * @brief Move Assignment Operator= for DoubleLinkedList.
     * @param other The linked list to move elements from.
     * @return DoubleLinkedList& A reference to the assigned linked list.
     */
-    DoubleLinkedList& operator=(DoubleLinkedList&& other) noexcept;
+    DoubleLinkedList& operator=(DoubleLinkedList&& other) noexcept = default;
 
 };
